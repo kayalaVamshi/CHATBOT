@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vignan's College Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: containerFadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes containerFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        header {
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: 600;
+            color: #1ABC9C;
+        }
+
+        header p {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #BDC3C7;
+        }
+
+        .animated-title {
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .animated-title span {
+            display: inline-block;
+            opacity: 0;
+            animation: reveal-letter 0.8s ease forwards;
+        }
+
+        .animated-title span:nth-child(1) { animation-delay: 0s; }
+        .animated-title span:nth-child(2) { animation-delay: 0.1s; }
+        .animated-title span:nth-child(3) { animation-delay: 0.2s; }
+        .animated-title span:nth-child(4) { animation-delay: 0.3s; }
+        .animated-title span:nth-child(5) { animation-delay: 0.4s; }
+        .animated-title span:nth-child(6) { animation-delay: 0.5s; }
+        .animated-title span:nth-child(7) { animation-delay: 0.6s; }
+        .animated-title span:nth-child(8) { animation-delay: 0.7s; }
+        .animated-title span:nth-child(9) { animation-delay: 0.8s; }
+        .animated-title span:nth-child(10) { animation-delay: 0.9s; }
+
+        @keyframes reveal-letter {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-container {
+            margin-top: 40px;
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+        }
+
+        .question {
+            font-size: 22px;
+            font-weight: bold;
+            color: #34495E;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            background-color: #3498DB;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .option:hover {
+            background-color: #2980B9;
+            transform: scale(1.05);
+        }
+
+        .option:active {
+            transform: scale(1);
+        }
+
+        footer {
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 15px;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Animating Main Menu Options */
+        .main-menu-enter {
+            animation: fadeInFromLeft 0.6s ease-out;
+        }
+
+        @keyframes fadeInFromLeft {
+            0% { transform: translateX(-50px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="animated-title">
+                <span>V</span>
+                <span>I</span>
+                <span>G</span>
+                <span>N</span>
+                <span>A</span>
+                <span>N</span>
+                <span>'</span>
+                <span>S</span>
+                <span> </span>
+                <span>C</span>
+                <span>O</span>
+                <span>L</span>
+                <span>L</span>
+                <span>E</span>
+                <span>G</span>
+                <span>E</span>
+            </h1>
+            <p>Welcome to Vignan's College chatbot! We're here to assist you with any questions you may have.</p>
+        </header>
+
+        <div class="chat-container">
+            <div id="chat">
+                <div class="question-container">
+                    <div class="question">How can we assist you today?</div>
+                    <div class="options main-menu-enter">
+                        <div class="option" onclick="showCourses()">Courses Offered</div>
+                        <div class="option" onclick="showCampus()">Campus Facilities</div>
+                        <div class="option" onclick="showAdmissions()">Admissions</div>
+                        <div class="option" onclick="showAbout()">About Us</div>
+                        <div class="option" onclick="showContact()">Contact Information</div>
+                        <div class="option" onclick="showPlacements()">Placements</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Vignan's College. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Function to show About Us page
+        function showAbout() {
+            const chat = document.getElementById('chat');
+            chat.innerHTML = `
+                <div class="question-container">
+                    <div class="question">About Vignan's College:</div>
+                    <div class="options">
+                        <div class="option">Founded in 2002</div>
+                        <div class="option">Located in Vishakaptnam Andhra Pradesh</div>
+                        <div class="option">Accredited by NBA and  NAAC</div>
+                        <div class="option" onclick="backToMain()">Back to Main Menu</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to show Contact Information
+        function showContact() {
+            const chat = document.getElementById('chat');
+            chat.innerHTML = `
+                <div class="question-container">
+                    <div class="question">You can contact us at:</div>
+                    <div class="options">
+                        <div class="option">Phone: +91 123 456 7890</div>
+                        <div class="option">Email: contact@vignanscollege.com</div>
+                        <div class="option" onclick="backToMain()">Back to Main Menu</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to show Placements Information
+        function showPlacements() {
+            const chat = document.getElementById('chat');
+            chat.innerHTML = `
+                <div class="question-container">
+                    <div class="question">Placement Highlights:</div>
+                    <div class="options">
+                        <div class="option">Top Recruiters: Infosys, TCS, Cognizant</div>
+                        <div class="option">Average Salary: 5 LPA</div>
+                        <div class="option" onclick="backToMain()">Back to Main Menu</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to display Courses Offered
+        function showCourses() {
+            const chat = document.getElementById('chat');
+            chat.innerHTML = `
+                <div class="question-container">
+                    <div class="question">Courses Offered:</div>
+                    <div class="options">
+                        <div class="option" onclick="showBTech()">B.Tech</div>
+                        <div class="option" onclick="showMTech()">M.Tech</div>
+                        <div class="option" onclick="showMBA()">MBA</div>
+                        <div class="option" onclick="backToMain()">Back to Main Menu</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to display Campus Facilities
+        function showCampus() {
+            const chat = document.getElementById('chat');
+            chat.innerHTML = `
+                <div class="question-container">
+                    <div class="question">Our campus offers the following facilities:</div>
+                    <div class="options">
+                        <div class="option" onclick="showLibrary()">Library</div>
+                        <div class="option" onclick="showSports()">Sports</div>
+                        <div class="option" onclick="showHostels()">Hostels</div>
+                        <div class="option" onclick="backToMain()">Back to Main Menu</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to display Admissions
+        function showAdmissions() {
+            const chat = document.getElementById('chat');
+            chat.innerHTML = `
+                <div class="question-container">
+                    <div class="question">Admissions are open for the following programs:</div>
+                    <div class="options">
+                        <div class="option" onclick="showBTechAdmission()">B.Tech Admission</div>
+                        <div class="option" onclick="showMTechAdmission()">M.Tech Admission</div>
+                        <div class="option" onclick="showMBAAdmission()">MBA Admission</div>
+                        <div class="option" onclick="backToMain()">Back to Main Menu</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Back to main menu
+        function backToMain() {
+            const chat = document.getElementById('chat');
+            chat.innerHTML = `
+                <div class="question-container">
+                    <div class="question">How can we assist you today?</div>
+                    <div class="options main-menu-enter">
+                        <div class="option" onclick="showCourses()">Courses Offered</div>
+                        <div class="option" onclick="showCampus()">Campus Facilities</div>
+                        <div class="option" onclick="showAdmissions()">Admissions</div>
+                        <div class="option" onclick="showAbout()">About Us</div>
+                        <div class="option" onclick="showContact()">Contact Information</div>
+                        <div class="option" onclick="showPlacements()">Placements</div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
